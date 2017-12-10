@@ -1,0 +1,48 @@
+{% extends "jwmod/__base__.html" %}
+{% block mainbody %}
+    <section class="panel">
+        <header class="panel-heading">
+            销售清单
+        </header>
+        <div class="panel-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>款式</th>
+                    <th>颜色</th>
+                    <th>尺寸</th>
+                    <th>数量</th>
+                    <th>价格</th>
+                    <th>总价</th>
+                    <th>客户</th>
+                    <th>日期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for jwSale in jwSalesBills %}
+                    <tr>
+                        <td>{{ jwSale.id }}</td>
+                        <td>{{ jwSale.jwbra.style_name }}</td>
+                        <td>{{ jwSale.jwbra.colour_name }}</td>
+                        <td>{{ jwSale.jwbra.size_name }}</td>
+                        <td>{{ jwSale.sale_num }}</td>
+                        <td>{{ jwSale.sale_price }}</td>
+                        <td>{{ jwSale.total }}</td>
+                        <td>{{ jwSale.customer_name.customer_name }}</td>
+                        <td>{{ jwSale.sale_date }}</td>
+                        <td>
+                            <form action="stock_sell_delete_post" method="post">
+                                {% csrf_token %}
+                                <input class="form-control input-lg m-b-2" type="hidden" value={{ jwSale.id }} name="jwstock_id">
+                                <input class="form-control input-lg m-b-2" type="submit" value="删除">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "jwmod/__base__.html" %}
+
+{% block mainbody %}
+    {% if customer %}
+    <section class="panel">
+        <header class="panel-heading">
+            修改客户资料
+        </header>
+        <div class="panel-body">
+            <form action="customer_update_post" method="post">
+                {% csrf_token %}
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess" >姓名</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="customer_name" value = {{ customer.customer_name }}>
+                    </div>
+                </div>
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess" >电话</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="customer_phone" value = {{ customer.customer_phone }}>
+                    </div>
+                </div>
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">地址</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="customer_addr"  value = {{ customer.customer_addr }}>
+                    </div>
+                </div>
+                <input type="hidden" value={{ customer.id }} name="customer_id">
+                <input class="form-control input-lg m-b-10" type="submit">
+            </form>
+        </div>
+    </section>
+    {% endif %}
+
+{% endblock %}
+
+

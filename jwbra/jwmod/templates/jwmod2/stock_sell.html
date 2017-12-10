@@ -1,0 +1,61 @@
+{% extends "jwmod/__base__.html" %}
+
+{% block mainbody %}
+    {% if jwbar and jwcustomers %}
+    <section class="panel">
+        <header class="panel-heading">
+            修改客户资料
+        </header>
+        <div class="panel-body">
+            <form action="stock_sell_post" method="post">
+                {% csrf_token %}
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess" >型号</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="style_name" value = {{ jwbar.style_name }} disabled="">
+                    </div>
+                </div>
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess" >颜色</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="colour_name" value = {{ jwbar.colour_name }} disabled="">
+                    </div>
+                </div>
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">尺寸</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="size_name"  value = {{ jwbar.size_name }} disabled="">
+                    </div>
+                </div>
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">客户</label>
+                    <div class="col-lg-10">
+                        <select class="form-control input-lg m-b-10" name="customer_id">
+                            {% for jwcustomer in jwcustomers %}
+                                <option value= {{ jwcustomer.id }}>{{ jwcustomer.customer_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">单价</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="price" value="198"  >
+                    </div>
+                </div>
+                <div class="form-group has-success">
+                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">数量</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="jwbar_num" value="1"   >
+                    </div>
+                </div>
+                <input type="hidden" value={{ jwbar.id }} name="jwbar_id">
+                <input class="form-control input-lg m-b-10" type="submit">
+            </form>
+        </div>
+    </section>
+    {% endif %}
+
+{% endblock %}
+
+

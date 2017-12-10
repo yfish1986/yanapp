@@ -1,0 +1,45 @@
+<ul class="sidebar-menu">
+    <li class="active">
+        <a href="/jwmod/index">
+            <i class="fa fa-dashboard"></i> <span>库存</span>
+        </a>
+    </li>
+    <li>
+        <a href="/jwmod/stock_sell_list">
+            <i class="fa fa-gavel"></i> <span>销售清单</span>
+        </a>
+    </li>
+    <li>
+        <a href="/jwmod/stock_add">
+            <i class="fa fa-gavel"></i> <span>添加进货</span>
+        </a>
+    </li>
+    <li>
+        <a href="/jwmod/stock_list">
+            <i class="fa fa-gavel"></i> <span>进货清单</span>
+        </a>
+    </li>
+    <li>
+        <a href="/jwmod/customer_add">
+            <i class="fa fa-glass"></i> <span>添加客户</span>
+        </a>
+    </li>
+    <li>
+        <a href="/jwmod/customer_list">
+            <i class="fa fa-glass"></i> <span>客户清单</span>
+        </a>
+    </li>
+
+    <li>
+        <a href="/jwmod/simple.html">
+            <i class="fa fa-glass"></i> <span>报表</span>
+        </a>
+    </li>
+    <li>
+        <a>
+            <i class="fa fa-glass"></i> <span><form method="POST" action="/jwmod/logout">{% csrf_token %}<input
+                class="form-control input-lg m-b-10" value="退出" type="submit"></form></span>
+        </a>
+    </li>
+
+</ul>

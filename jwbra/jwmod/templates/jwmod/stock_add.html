@@ -1,0 +1,38 @@
+{% extends "jwmod/__base__.html" %}
+
+{% block mainbody %}
+    <section class="panel">
+        <header class="panel-heading">
+            进货
+        </header>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">进货</label>
+                <div class="col-lg-10">
+                    <form action="stock_add_post" method="post">
+                        {% csrf_token %}
+                        <select class="form-control input-lg m-b-10" name="jwstyle_id">
+                            {% for jwstyle in jwstyles %}
+                                <option value= {{ jwstyle.id }}>{{ jwstyle.style_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <select class="form-control input-lg m-b-10" name="jwcolour_id">
+                            {% for jwcolour in jwcolours %}
+                                <option value= {{ jwcolour.id }}>{{ jwcolour.colour_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <select class="form-control input-lg m-b-10" name="jwsize_id">
+                            {% for jwsize in jwsizes %}
+                                <option value= {{ jwsize.id }}>{{ jwsize.size_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <input name="jwstocknum" class="form-control input-lg m-b-10" type="text" value="1">
+                        <input name="jwstockprice" class="form-control input-lg m-b-10" type="text" value="199">
+                        <input class="form-control input-lg m-b-10" type="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

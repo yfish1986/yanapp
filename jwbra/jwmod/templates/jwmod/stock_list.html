@@ -1,0 +1,46 @@
+{% extends "jwmod/__base__.html" %}
+{% block mainbody %}
+    <section class="panel">
+        <header class="panel-heading">
+            进货清单
+        </header>
+        <div class="panel-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>款式</th>
+                    <th>颜色</th>
+                    <th>尺寸</th>
+                    <th>数量</th>
+                    <th>价格</th>
+                    <th>总价</th>
+                    <th>日期</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for jwstock in jwstocks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ jwstock.style_name }}</td>
+                        <td>{{ jwstock.colour_name }}</td>
+                        <td>{{ jwstock.size_name }}</td>
+                        <td>{{ jwstock.num }}</td>
+                        <td>{{ jwstock.price }}</td>
+                        <td>{{ jwstock.total }}</td>
+                        <td>{{ jwstock.stock_date }}</td>
+                        <td>
+                            <form action="stock_delete_post" method="post">
+                                {% csrf_token %}
+                                <input class="form-control input-lg m-b-2" type="hidden" value={{ jwstock.id }} name="jwstock_id">
+                                <input class="form-control input-lg m-b-2" type="submit" value="删除">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

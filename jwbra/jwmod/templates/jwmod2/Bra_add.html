@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-head-line">进货</h1>
+    </div>
+</div>
+
+<div class="row">
+    <section class="panel">
+        <div class="panel-body">
+            <div class="form-group">
+                    <form action="jwmod2/jwbra_add" method="post">
+                        {% csrf_token %}
+                        <label>款式</label>
+                        <select class="form-control" name="jwstyle_id">
+                            {% for jwstyle in jwstyles %}
+                                <option value= {{ jwstyle.id }}>{{ jwstyle.style_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>颜色</label>
+                        <select class="form-control" name="jwcolour_id">
+                            {% for jwcolour in jwcolours %}
+                                <option value= {{ jwcolour.id }}>{{ jwcolour.colour_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>尺寸</label>
+                        <select class="form-control input-lg m-b-10" name="jwsize_id">
+                            {% for jwsize in jwsizes %}
+                                <option value= {{ jwsize.id }}>{{ jwsize.size_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>数量</label>
+                        <input name="jwstocknum" class="form-control input-lg m-b-10" type="text" value="1">
+                        <label>单价</label>
+                        <input name="jwstockprice" class="form-control input-lg m-b-10" type="text" value="199">
+                        <input class="form-control" type="reset" value="重置">
+                        <input class="form-control" type="submit" value="提交">
+                    </form>
+                </div>
+        </div>
+    </section>
+</div>

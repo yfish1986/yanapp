@@ -1,0 +1,67 @@
+{% extends "jwmod/__base__.html" %}
+
+{% block mainbody %}
+    <section class="content">
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-md-8">
+                <section class="panel">
+
+                    <header class="panel-heading">
+                        库存清单
+                    </header>
+                    <div class="panel-body table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>款式</th>
+                                <th>颜色</th>
+                                <!-- <th>Client</th> -->
+                                <th>大小</th>
+                                <!-- <th>Price</th> -->
+                                <th>数量</th>
+                                <th>单价</th>
+                                <th>总价</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if jwbra_list %}
+                                {% for ljwbra in jwbra_list %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ ljwbra.style_name }} </td>
+                                        <td>{{ ljwbra.colour_name }}</td>
+                                        <td>{{ ljwbra.size_name }}</td>
+                                        <td>{{ ljwbra.num }}</td>
+                                        <td>{{ ljwbra.price }}</td>
+                                        <td>{{ ljwbra.total }}</td>
+                                        <td>
+                                        <form action="stock_sell" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" value={{ ljwbra.id }} name='jwbar_id'>
+                                            <input class="btn btn-success" type="submit" value="销售">
+                                        </form>
+                                        </td>
+                                        <!-- <td>$1500</td> -->
+                                    </tr>
+
+                                {% endfor %}
+                            {% else %}
+                                <p>No Jwbra</p>
+                            {% endif %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+
+            </div><!--end col-6 -->
+
+        </div>
+
+        <!-- row end -->
+    </section><!-- /.content -->
+{% endblock %}

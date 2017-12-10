@@ -1,0 +1,51 @@
+{% extends "jwmod/__base__.html" %}
+
+{% block mainbody %}
+    <section class="panel">
+        <header class="panel-heading">
+            进货清单
+        </header>
+        <div class="panel-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>住址</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for jwcustomer in jwcustomers %}
+
+                    <tr>
+                        <td>{{ jwcustomer.id }}</td>
+                        <td>{{ jwcustomer.customer_name }}</td>
+                        <td>{{ jwcustomer.customer_phone }}</td>
+                        <td>{{ jwcustomer.customer_addr }}</td>
+                        <td>
+                            <form action="customer_update" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" value={{ jwcustomer.id }} name=customer_id>
+                                <input class="btn btn-success" type="submit" value="修改">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="customer_delete" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" value={{ jwcustomer.id }} name=customer_id>
+                                <input class="btn btn-success" type="submit" value="删除">
+                            </form>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+{% endblock %}
